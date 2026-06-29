@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List - Action</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+
+    <!-- Icon Lib -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <form action="">
+        <div class="card" style="padding: 40px;">
+
+            <!-- Nav bar -->
+            <div class="nav-bar" >
+                <div style="display: flex; justify-content:space-between; width: 100%;">
+                    <div>
+                        <h2>ToDo List</h2>
+                    </div>
+                    <div>
+                        <h4 style="color: red;"><i class="fa-solid fa-angle-left" style="color: red;"></i> Back</h4>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <h3>
+                        Editing Task: <span style="color: yellow">#43435</span>
+                    </h3>
+                </div>
+            </div>
+
+            <br>
+
+            <hr>
+
+            <br>
+
+            <!-- Content -->
+            <div>
+                <h4>Title</h4>
+                <br>
+                <input type="text" placeholder="Enter task title" style="width: 100%;">
+                <br><br>
+
+                <h4>Description</h4>
+                <br>
+                <textarea placeholder="Enter description for the tasks"></textarea>
+
+                <br><br>
+                <h4>Status</h4>
+                <br>
+                <div style="justify-content: left;">
+                    <input type="radio" name="status">Completed
+                    <input type="radio" name="status">Not Completed
+                </div>
+                <br><br>
+
+                <center><input type="button" value="Update Changes"></center>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

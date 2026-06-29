@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+
+        <style>
+            .btn{
+                display: inline-block;
+                color: white;
+                font-weight: bold;
+                font-size: 14px;
+                padding: 5px 10px;
+                border-radius: 10px;
+                border: 1px solid white;
+                background-color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .btn:hover{
+                color: black;
+                background-color: white;
+            }
+
+            .btn:hover i{
+                color: black;
+            }
+
+            /* Filter Highlights */
+            mark{
+                color: black;
+                background-color: #29f529;
+            }
+
+            details summary {
+                cursor: pointer;
+            }
+            
+        </style>
+
+    <!-- Icon Lib -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <form action="">
+        <div class="card" style="padding: 40px;">
+
+            <!-- Nav bar -->
+            <div class="nav-bar" >
+                <div style="display: flex; justify-content:space-between; width: 100%;">
+                    <div>
+                        <h2>ToDo List</h2>
+                    </div>
+                    <div>
+                        <a href="logout-btn" style="text-decoration: none;"><h4 style="color: red;"><i class="fa-solid fa-person-through-window" style="color: red;"></i> Logout</h4></a>
+                    </div>
+                </div>
+
+                <div style="width: 100%;" >
+                    <h3>
+                        Welcome Back, <span style="color: aqua;">{{ name }}</span>👋!
+                    </h3>
+
+                    <h5>
+                        Tasks: You have completed <span style="color: rgb(15, 207, 15); font-size: medium;">{{ completed_count }}</span> and have <span style="color: yellow; font-size: medium;">{{ pending_count }}</span> pending.
+                    </h5>
+                </div>
+            </div>
+
+            <br>
+
+            <hr>
+
+            <br>
+
+            <!-- Content -->
+            <div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <h4>TASKS</h4>
+                    </div>
+
+                    <div style="padding-left: 175px;">
+
+                        <input
+                            id="search"
+                            type="text"
+                            name="search"
+                            placeholder="📝 Search...by ID/Title/Desc"
+                            value="{{ search }}"
+                        >
+                        
+                        <button style="color: rgb(16, 50, 202);" formaction="search-task-form" formmethod="POST">
+                            {% csrf_token %}
+                            <i class="fa-solid fa-magnifying-glass" style="color: rgb(16, 50, 202);"></i>Search
+                        </button>
+
+
+                        {% if not search %}
+                            <a href="addtask-{{ username }}" class="btn" >
+                                <i class="fa-solid fa-plus"></i> Add Task
+                            </a>
+                        {% else %}
+                            <button style="color: coral;" formaction="search-task-clear" formmethod="GET">
+                                <i class="fa-solid fa-broom" style="color: coral;"></i> Clear Filter
+                            </button>
+                        {% endif %} 
+
+                    </div>
+                </div>
+
+                <br>
+
+                <!-- Tasks list -->
+                <div>
+                    <div id="pending-tasks">
+                        {% if pending_count == 0 %}
+                                {% if not search %}
+                                    <h4>No Tasks are pending to complete!</h4>
+                                {% else %}
+                                    <h4>No Tasks found on pending that matches filter!</h4>
+                                {% endif %}
+                        {% else %}
+                            {% for task in tasks%}
+                                {% if task.Status == False %}
+                                    <div style="padding-bottom: 20px;">
+                                        <div>
+                                            <h3>{{ task.Title|safe }}</h3>
+                                            <small>
+                                                <details>
+                                                    <summary>Description</summary>
+                                                    <p>&emsp;&emsp;{{ task.Description|safe }}</p>
+                                                </details>
+                                            </small>
+                                            <small>ID: #{{ task.id|safe }}</small>
+                                        </div>
+
+                                        <div style="padding-left: 30px;">
+
+                                            <button style="color: rgb(12, 241, 31);" type="submit" formaction="updatetaskstatuscompleted-{{ task.id }}" formmethod="POST">
+                                                {% csrf_token %}
+                                                <i class="fa-solid fa-check" style="color: rgb(12, 241, 31);"></i>Completed
+                                            </button>
+
+                                            <button type="submit" formaction="updatetask-{{ task.id }}" formmethod="POST">
+                                                {% csrf_token %}
+                                                <i class="fa-solid fa-pencil"></i>Action
+                                            </button>
+
+                                            <button style="color: red;" type="submit" formaction="deletetask-{{ task.id }}" formmethod="POST">
+                                                {% csrf_token %}
+                                                <i class="fa-regular fa-trash-can" style="color: red;"></i>Delete
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+
+                    <br>
+                    <hr style="border: none; height: 2px; background-color: #333333;">
+                    <br>
+
+                    <div>
+                        <h4>COMPLETED TASKS</h4>
+                    </div>
+                    <br>
+
+                    <div id="completed-tasks">
+                        {% if completed_count == 0 %}
+                            {% if not search %}
+                                <h4>No Tasks are completed!</h4>
+                            {% else %}
+                                <h4>No Tasks found on completed that matches filter!</h4>
+                            {% endif %}
+                        {% else %}
+                            {% for task in tasks %}
+                                {% if task.Status == True %}
+                                    <div style="padding-bottom: 20px;">
+                                        <div>
+                                            <h3>{{ task.Title|safe }}</h3>
+                                            <small>
+                                                <details>
+                                                    <summary>Description</summary>
+                                                    <p>&emsp;&emsp;{{ task.Description|safe }}</p>
+                                                </details>
+                                            </small>
+                                            <small>ID: #{{ task.id|safe }}</small>
+                                        </div>
+
+                                        <div style="padding-left: 30px;">
+                                            <button type="submit" formaction="updatetaskstatusnotcompleted-{{ task.id }}" formmethod="POST">
+                                                {% csrf_token %}
+                                                <i class="fa-solid fa-rotate"></i>Re-do
+                                            </button>
+                                            <button style="color: red;" type="submit" formaction="deletetask-{{ task.id }}" formmethod="POST">
+                                                {% csrf_token %}
+                                                <i class="fa-regular fa-trash-can" style="color: red;"></i>Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <br><br>
+    </form>
+</body>
+</html>

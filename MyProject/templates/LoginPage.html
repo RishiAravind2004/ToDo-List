@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List - Login</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+    <form action="login-form" method="POST">
+        {% csrf_token %}
+
+        <div class="card">
+            <div class="nav-bar">
+                <h3>LOGIN</h3>
+            </div>
+            <br><br>
+            <div>
+                <p>
+                    Email
+                </p>
+                <br>
+                <input type="email" placeholder="Enter your Email" required name="email" value="{{ email }}">
+
+                <br><br>
+
+                <p>
+                    Password
+                </p>
+                <br>
+                <input type="password" placeholder="Enter your Password" required name="password">
+
+                <p class="hint">
+                    <a href="forgot-password">Forgot your password?</a>
+                </p>
+
+                <br>
+                <input type="submit" value="Login">
+
+                <br><br>
+                
+                <p class="hint">
+                    <a href="register">Don't have account?</a>
+                </p>
+
+                <br>
+
+                {% if error %}
+                    <p class="error">{{ error }}</p> 
+                {% else %}
+                    <p class="success">{{ success }}</p>
+                {% endif %}
+
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List - Deleting Task</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+
+    <!-- Icon Lib -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <form action="deletetaskform-{{ id }}" method="POST">
+        {% csrf_token %}
+        <div class="card" style="padding: 40px;">
+
+            <!-- Nav bar -->
+            <div class="nav-bar" >
+                <div style="display: flex; justify-content:space-between; width: 100%;">
+                    <div>
+                        <h2>ToDo List</h2>
+                    </div>
+                    <div>
+                        <!-- <h4 style="color: red;"><i class="fa-solid fa-angle-left" style="color: red;"></i> Back</h4> -->
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <h3>
+                        Deleting Task</span>
+                    </h3>
+                </div>
+            </div>
+
+            <br>
+
+            <hr>
+
+            <br>
+
+            <!-- Content -->
+            <div>
+                <h3>{{ Title }}</h3>
+                <small>
+                    <p>&emsp;&emsp;{{ Description }}</p>
+                </small>
+                <small>ID: #{{ id }}</small>
+
+                <br>
+                
+                {% if Status %}
+                    <small>STATUS: <span style="font-weight: bold; color: rgb(12, 241, 31);">Completed</span></small>
+                {% else %}
+                    <small>STATUS: <span style="font-weight: bold; color: orange">Not Completed</span></small>
+                {% endif %}
+
+                <br><br>
+
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button>
+                        Don't Delete
+                    </button>
+
+                    <button style="color: red;" type="submit">
+                        <i class="fa-regular fa-trash-can" style="color: red;"></i>Delete Task
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <br>
+</body>
+</html>

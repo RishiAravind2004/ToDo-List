@@ -1,0 +1,153 @@
+
+/* Font Styling */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+/* Overall styling */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+    color: white;
+
+    font-family: "Source Code Pro", monospace;
+    letter-spacing: 1.5px;
+}
+
+body{
+    background-color: black;
+    justify-items: center;
+    padding-top: 100px;
+
+}
+
+
+/* Input field */
+input{
+    color: white;
+    padding: 5px;
+    background-color: black;
+    border-radius: 10px;
+    width: 300px;
+}
+
+textarea{
+    color: white;
+    padding: 5px;
+    background-color: black;
+    border-radius: 10px;
+    width: 550px;
+}
+
+
+/* Button */
+
+
+input[type="submit"]{
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+input[type="submit"]:hover{
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Button with icon */
+button{
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: black;
+}
+
+button:hover{
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    
+}
+button:hover i{
+    color: black;
+    background-color: white;
+    
+}
+
+button:hover a{
+    color: black;
+    background-color: white;
+    
+}
+
+
+/* Radio btn */
+input[type="radio"]{
+    color: white;
+    width: 50px;
+    padding: 50px;
+}
+
+
+
+
+
+.card{
+    border: 1px solid white;
+    box-shadow: 0px 0px 5px 5px white;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.nav-bar{
+    justify-items: center;
+}
+
+.hint{
+    font-size: smaller;
+}
+
+
+.success{
+    color: rgb(0, 255, 13);
+    text-align: center;
+}
+.error{
+    color: red;
+    text-align: center;
+}
+
+#pending-tasks > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#pending-tasks small{
+    color: rgb(175, 172, 172);
+}
+
+#completed-tasks>div{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+#completed-tasks h3{
+    color: rgb(175, 172, 172);
+    text-decoration: line-through;
+}
+
+#completed-tasks small{
+    color: rgb(175, 172, 172);
+}
+
+

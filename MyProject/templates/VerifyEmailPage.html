@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List - Verify Email</title>
+
+    {% load static %}
+    <!-- <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+    <link rel="stylesheet" href="../static/style.css">
+
+
+</head>
+<body>
+    <form action="register-verify" method="POST">
+        {% csrf_token %}
+
+        <div class="card">
+            <div class="nav-bar">
+                <h3>Email Verifying</h3>
+            </div>
+            <br><br>
+            <div>
+                <input type="email" value="{{ email }}" readonly name="email">
+                <br><br>
+                <p>
+                    Code
+                </p>
+                <br>
+                <input type="number" placeholder="Enter your Code" name="code">
+                <br><br>
+                <p class="hint">Enter the verification code that <br> has been sen to your email.</p>
+                <br>
+                <input type="submit" value="Verify">
+
+                <br><br>
+                
+                <center><button><a href="/" style="text-decoration: none;">Cancel & Back to Login</a></button></center>
+
+                <br><br>
+                <p class="error">{{ error }}</p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

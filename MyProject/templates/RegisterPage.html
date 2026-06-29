@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List - Register</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+
+    <form action="register-form" method="POST">
+        {% csrf_token %}
+
+        <div class="card">
+            <div class="nav-bar">
+                <h3>REGISTER</h3>
+            </div>
+
+            <br>
+
+            <div style="display: flex; gap: 30px;">
+                <!-- Left part -->
+                <div style="flex: 1;">
+                    <p>
+                        Name
+                    </p>
+                    <br>
+                    <input type="text" placeholder="Enter your Name" required name="name" value="{{ name }}">
+                    <br><br>
+
+                    <p>
+                        Email
+                    </p>
+                    <br>
+                    <input type="email" placeholder="Enter your Email" required name="email" value="{{ email }}">
+                    <br><br>
+
+                    <p>
+                        Username
+                    </p>
+                    <br>
+                    <input type="text" placeholder="Enter your Username" required name="username" value="{{ username }}">
+                    <br><br>
+                </div>
+
+                <!-- Right part -->
+                <div style="flex: 1;">
+
+        
+                    <p>
+                        Password
+                    </p>
+                    <br>
+                    <input type="password" placeholder="Enter your Password"  required name="password">
+
+                    <br><br>
+
+                    <p>
+                        Confirm Password
+                    </p>
+                    <br>
+                    <input type="password" placeholder="Enter your Confirm Password"  required name="confirm password">
+
+                    <br><br>
+                </div>
+            </div>
+
+            <center><input type="submit" value="Register"></center>
+            <br>
+            <p class="error">{{ error }}</p>
+        </div>
+    </form>
+</body>
+</html>
