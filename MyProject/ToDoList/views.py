@@ -419,7 +419,7 @@ def HandleTaskDeleteForm(request, TaskId):
 import re
 
 def HandleTaskSeachingForm(request):
-    regex_pattern = request.POST["search"].strip()
+    regex_pattern = request.POST["search"]
 
     if not regex_pattern:
         return redirect("home-page")
@@ -428,7 +428,7 @@ def HandleTaskSeachingForm(request):
     filtered_tasks = []
 
     user_tasks = TasksTB.objects.filter(
-        user=UserTB.objects.get(Username=request.session.get("todolist-username"))
+        user=UserTB.objects.get(Username=request.COOKIES.get("todolist-username"))
     ).values()
 
     for task in user_tasks:

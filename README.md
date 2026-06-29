@@ -81,11 +81,19 @@ The project includes email verification and password reset using SMTP. To make i
 - Use a valid Gmail account or another SMTP provider
 
 ## 📸 Screenshots
-Add screenshots of the app here to make the project more visual:
-- Login Page
-- Registration Page
-- Home / Task Dashboard
-- Add or Update Task Page
+Here are some screenshots of the application:
+
+![Add Task Page](Screenshorts/AddTask.png)
+
+![Task Dashboard](Screenshorts/Tasks.png)
+
+![Email Verification](Screenshorts/EmailVerification.png)
+
+![Search Feature](Screenshorts/Search.png)
+
+![Delete Task Page](Screenshorts/Delete.png)
+
+![Email Feature](Screenshorts/Email.png)
 
 ## ⭐ Highlights
 This project showcases practical implementation of:
