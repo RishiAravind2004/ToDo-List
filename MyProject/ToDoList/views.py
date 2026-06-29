@@ -12,8 +12,8 @@ import smtplib
 from email.message import EmailMessage
 
 # Replace these with your actual email and app-specific password
-Sender_Email = "rishikesh1878@gmail.com"
-App_password = "wpii qrvd jnlv vnbd"
+Sender_Email = "xxxxxxxxxxxxxxxxxxx@gmail.com"
+App_password = "xxxx xxxx xxxx xxxx"
 
 def Send_Mail(Recipient_Email, Subject, Content):
     msg = EmailMessage()
