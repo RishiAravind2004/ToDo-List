@@ -3,8 +3,7 @@
 A clean and functional Django web application for managing daily tasks with user authentication, task management, email verification, and password recovery.
 
 ## 🔗 Live Demo
-- Demo Link: [Click here to view the live demo](https://your-live-demo-link.com)
-- Replace this with your actual deployment link when available.
+- Looking for an host (ASAP I will host).
 
 ## 🌟 Project Overview
 This project is a simple yet practical Django-based to-do list application designed to help users organize their tasks efficiently. It demonstrates core web development concepts such as:
